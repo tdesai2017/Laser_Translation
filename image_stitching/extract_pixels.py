@@ -9,10 +9,8 @@ def imageprepare(argv):
     """
     im = Image.open(argv).convert('L')
     img = im.resize((28, 28), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
-
     tv = list(img.getdata()) 
-    #print(tv)
-    # get pixel values
+    
     # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
     tva = [(255 - x) * 1.0 / 255.0 for x in tv]
     return tva
@@ -28,7 +26,7 @@ def reshape_pixel_array(pixel_arr):
    return reshaped_pixel_arr
 
 def main():
-   pixel_array=imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
+   pixel_array = imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
    newArr = reshape_pixel_array(pixel_array)
       
    plt.imshow(newArr, interpolation='nearest')
