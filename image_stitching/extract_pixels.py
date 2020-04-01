@@ -26,7 +26,10 @@ def reshape_pixel_array(pixel_arr):
    return reshaped_pixel_arr
 
 def main():
-   pixel_array = imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
+  #Respective Image location
+   pixel_array = imageprepare('/Users/tushardesai/Documents/all_things_code/projects/laser_video/data/frame37.jpg')
+
+   #Reshapes array to 28x28 board
    newArr = reshape_pixel_array(pixel_array)
       
    plt.imshow(newArr, interpolation='nearest')
@@ -35,7 +38,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 
 """
 [[  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
