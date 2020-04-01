@@ -9,29 +9,26 @@
 from PIL import Image, ImageFilter
 from matplotlib import pyplot as plt
 
-
 def imageprepare(argv):
     """
-    This function returns the pixel values.
-    The imput is a png file location.
+    This function returns the pixel values as one array with 784 pixel values normalized
+    so that 255 is 1 and 0 is 0.
+    
     """
     im = Image.open(argv).convert('L')
     img = im.resize((28, 28), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
 
     tv = list(img.getdata()) 
-    print(tv)
-     # get pixel values
+    #print(tv)
+    # get pixel values
     # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
-
     tva = [(255 - x) * 1.0 / 255.0 for x in tv]
     return tva
 
-pixel_array=[imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg')] #file path here
-#Now we convert 784 sized 1d array to 24x24 sized 2d array so that we can visualize it
 
+#Now we convert 784 sized 1d array to 28*28 sized 2d array so that we can visualize it
 
 def reshape_pixel_array(pixel_arr):
-   pixel_arr = pixel_arr[0]
    reshaped_pixel_arr = []
    n = 28
    while n <= len(pixel_arr):
@@ -40,14 +37,15 @@ def reshape_pixel_array(pixel_arr):
 
    return reshaped_pixel_arr
 
+pixel_array=imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
 newArr = reshape_pixel_array(pixel_array)
    
 plt.imshow(newArr, interpolation='nearest')
 plt.savefig('MNIST_IMAGE.png')#save MNIST image
 plt.show()#Show / plot that image
 
-"""
 
+"""
 [[  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
 0   0   0   0   0   0   0   0   0   0]
  [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
