@@ -1,11 +1,3 @@
-# from PIL import Image
-# import numpy as np
-# im = Image.open('/Users/tushardesai/Documents/all_things_code/projects/laser_video/data/frame37.jpg', 'r')
-# img = np.asarray(im) # convert it to ndarray
-# print(len(img))
-
-# https://www.youtube.com/watch?time_continue=2&v=oYndcjlzwX8&feature=emb_logo
-
 from PIL import Image, ImageFilter
 from matplotlib import pyplot as plt
 
@@ -25,10 +17,8 @@ def imageprepare(argv):
     tva = [(255 - x) * 1.0 / 255.0 for x in tv]
     return tva
 
-
-#Now we convert 784 sized 1d array to 28*28 sized 2d array so that we can visualize it
-
 def reshape_pixel_array(pixel_arr):
+   """ Takes flat array of 784 values and turns it into a 2d array with 28 rows of size 28 """
    reshaped_pixel_arr = []
    n = 28
    while n <= len(pixel_arr):
@@ -37,12 +27,16 @@ def reshape_pixel_array(pixel_arr):
 
    return reshaped_pixel_arr
 
-pixel_array=imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
-newArr = reshape_pixel_array(pixel_array)
-   
-plt.imshow(newArr, interpolation='nearest')
-plt.savefig('MNIST_IMAGE.png')#save MNIST image
-plt.show()#Show / plot that image
+def main():
+   pixel_array=imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg') #file path here
+   newArr = reshape_pixel_array(pixel_array)
+      
+   plt.imshow(newArr, interpolation='nearest')
+   plt.savefig('MNIST_IMAGE.png')#save MNIST image
+   plt.show()#Show / plot that image
+
+if __name__ == "__main__":
+    main()
 
 
 """
