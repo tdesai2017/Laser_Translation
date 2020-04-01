@@ -18,44 +18,33 @@ def imageprepare(argv):
     im = Image.open(argv).convert('L')
     img = im.resize((28, 28), Image.ANTIALIAS).filter(ImageFilter.SHARPEN)
 
-    tv = list(img.getdata())  # get pixel values
-
+    tv = list(img.getdata()) 
+    print(tv)
+     # get pixel values
     # normalize pixels to 0 and 1. 0 is pure white, 1 is pure black.
+
     tva = [(255 - x) * 1.0 / 255.0 for x in tv]
     return tva
 
-x=[imageprepare('/Users/tushardesai/Documents/all_things_code/projects/laser_video/data/frame37.jpg')]#file path here
+pixel_array=[imageprepare('/Users/zumaad/laser_translation/data/frame37.jpg')] #file path here
 #Now we convert 784 sized 1d array to 24x24 sized 2d array so that we can visualize it
-newArr=[[0 for d in range(28)] for y in range(28)]
-k = 0
-for i in range(28):
-    for j in range(28):
-        newArr[i][j]=x[0][k]
-        k=k+1
 
-#rounds every number to two decimal places
-for row in range(len(newArr)):
-  for col in  range(len(newArr[row])):
-    newArr[row][col] = round(newArr[row][col], 2)
 
-    #finds if there is anything close to target and prints the location
-    if newArr[row][col] - 0.14 == 0:
-      print (f"{newArr[row][col]}: {row, col}")
-  
-  
+def reshape_pixel_array(pixel_arr):
+   pixel_arr = pixel_arr[0]
+   reshaped_pixel_arr = []
+   n = 28
+   while n < len(pixel_arr) + 28:
+      print(f"slice is {pixel_arr[n-28:n]}")
+      reshaped_pixel_arr.append(pixel_arr[n-28:n])
+      n+=28
+   return reshaped_pixel_arr
 
-    #.14, .13 is our target here
-
-# prints entire array
-# for row in newArr:
-#   print(row)
-
-# print(newArr)
+newArr = reshape_pixel_array(pixel_array)
+   
 plt.imshow(newArr, interpolation='nearest')
 plt.savefig('MNIST_IMAGE.png')#save MNIST image
 plt.show()#Show / plot that image
-
-
 
 """
 
