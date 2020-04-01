@@ -34,10 +34,10 @@ def reshape_pixel_array(pixel_arr):
    pixel_arr = pixel_arr[0]
    reshaped_pixel_arr = []
    n = 28
-   while n < len(pixel_arr) + 28:
-      print(f"slice is {pixel_arr[n-28:n]}")
+   while n <= len(pixel_arr):
       reshaped_pixel_arr.append(pixel_arr[n-28:n])
       n+=28
+
    return reshaped_pixel_arr
 
 newArr = reshape_pixel_array(pixel_array)
