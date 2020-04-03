@@ -12,24 +12,34 @@ Which will produce a folder called data with the images. There will be 2000+ ima
 import cv2
 import numpy as np
 import os
+import shutil
+
 
 class VideoToImageConverter:
 
     def __init__(self, video_path):
         self.video_path = video_path
 
-    def splice_video(self):
+    def splice_video(self, destination_path = 'data'):
         """ 
         Splices given video to individual images and 
-        writes them to a folder in ./data 
+        writes them to a folder specified by destination_path
+
+        *Don't name your destination path a folder that is important,
+        since this folder will be deleted and populated with images
         """
 
     # Playing video from file:
         cap = cv2.VideoCapture(self.video_path)
 
         try:
-            if not os.path.exists('data'):
-                os.makedirs('data')
+            if os.path.exists(destination_path):
+                #Deletes any folder currently named ./data if it exists
+                shutil.rmtree(destination_path, ignore_errors=True)
+                print(os.path.exists(destination_path))
+
+            os.makedirs(destination_path)
+
         except OSError:
             print ('Error: Creating directory of data')
 
@@ -58,5 +68,5 @@ class VideoToImageConverter:
 
 
 
-x = VideoToImageConverter('3Video.mp4')
-x.splice_video()
+# x = VideoToImageConverter('3Video.mp4')
+# x.splice_video()

@@ -6,10 +6,12 @@ from matplotlib import pyplot as plt
 class ImageStitcher:
 
   def __init__(self, directory_path = 'data'):
+    """ Directory Path represents directory containing spliced images """
+
     self.directory_path = directory_path
 
 
-  def create_composite_imate_list (self):
+  def create_composite_image_list (self):
     """ 
     Takes a directory and overlays its content images together based on 
     PixelExtractor's conditions
@@ -30,6 +32,14 @@ class ImageStitcher:
       for loc in target_pixel_locations:
         composite_image_list[loc] = 255
 
+
+    return composite_image_list
+
+  def draw_image(self):
+    """Draws the image representation of the composite image"""
+
+    composite_image_list = self.create_composite_image_list()
+
     reshaped_composite_image = self.reshape_pixel_array(composite_image_list)
 
     plt.imshow(reshaped_composite_image, cmap='Greys',  interpolation='nearest')
@@ -49,7 +59,7 @@ class ImageStitcher:
 
 
 # x = ImageStitcher()
-# x.create_composite_imate_list()
+# x.create_composite_image_list()
 
 
   

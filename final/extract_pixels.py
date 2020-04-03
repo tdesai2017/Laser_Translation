@@ -52,19 +52,19 @@ class PixelExtractor:
 
       return target_pixels
 
-
-      """Below - Used for drawing image"""
-
-      #Reshapes array to 28x28 board
+      
+   def draw_image(self):
+      """ Draws the image representation of the rgb pixel valued image """
+      
+      pixel_array = self.imageprepare(self.image_path)
       newArr = self.reshape_pixel_array(pixel_array)
-         
       plt.imshow(newArr, interpolation='nearest')
       plt.savefig('MNIST_IMAGE.png')#save MNIST image
       plt.show()#Show / plot that image
 
 
-x = PixelExtractor('data/frame10.jpg', 'g')
-print(x.extract_target_pixel_location())
+# x = PixelExtractor('data/frame10.jpg', 'g')
+# print(x.extract_target_pixel_location())
 
 
 """
