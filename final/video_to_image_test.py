@@ -13,34 +13,50 @@ import cv2
 import numpy as np
 import os
 
-# Playing video from file:
-cap = cv2.VideoCapture('3Video.mp4')
+class VideoToImageConverter:
 
-try:
-    if not os.path.exists('data'):
-        os.makedirs('data')
-except OSError:
-    print ('Error: Creating directory of data')
+    def __init__(self, video_path):
+        self.video_path = video_path
 
-currentFrame = 0
-while(True):
-    # Capture frame-by-frame
-    ret, frame = cap.read()
-    
-    #Breaks when you have an empty frame
-    try:
-        frame.any()
-    except:
-        break
+    def splice_video(self):
+        """ 
+        Splices given video to individual images and 
+        writes them to a folder in ./data 
+        """
 
-    # Saves image of the current frame in jpg file
-    name = './data/frame' + str(currentFrame) + '.jpg'
-    print ('Creating...' + name)
-    cv2.imwrite(name, frame)
+    # Playing video from file:
+        cap = cv2.VideoCapture(self.video_path)
 
-    # To stop duplicate images
-    currentFrame += 1
+        try:
+            if not os.path.exists('data'):
+                os.makedirs('data')
+        except OSError:
+            print ('Error: Creating directory of data')
 
-# When everything done, release the capture
-cap.release()
-cv2.destroyAllWindows()
+        currentFrame = 0
+        while(True):
+            # Capture frame-by-frame
+            ret, frame = cap.read()
+            
+            #Breaks when you have an empty frame
+            try:
+                frame.any()
+            except:
+                break
+
+            # Saves image of the current frame in jpg file
+            name = './data/frame' + str(currentFrame) + '.jpg'
+            print ('Creating...' + name)
+            cv2.imwrite(name, frame)
+
+            # To stop duplicate images
+            currentFrame += 1
+
+        # When everything done, release the capture
+        cap.release()
+        cv2.destroyAllWindows()
+
+
+
+x = VideoToImageConverter('3Video.mp4')
+x.splice_video()

@@ -3,9 +3,9 @@ from matplotlib import pyplot as plt
 
 class PixelExtractor:
    
-   def __init__(self, image, color):
+   def __init__(self, image_path, color = 'g'):
       """Image represents file path to target file """
-      self.image = image
+      self.image_path = image_path
       self.color = color
 
    def imageprepare(self, argv):
@@ -35,7 +35,7 @@ class PixelExtractor:
    def extract_target_pixel_location(self): 
       """ Returns list of target pixel locations """
       #Respective Image location
-      pixel_array = self.imageprepare(self.image)
+      pixel_array = self.imageprepare(self.image_path)
 
       #Select less_than_target color point --> must be calibrated
       #?? Should we use an abstract class here instead of an if statment ??
@@ -63,8 +63,8 @@ class PixelExtractor:
       plt.show()#Show / plot that image
 
 
-# x = PixelExtractor('data/frame10.jpg', 'g')
-# print(x.extract_target_pixel_location())
+x = PixelExtractor('data/frame10.jpg', 'g')
+print(x.extract_target_pixel_location())
 
 
 """
