@@ -31,6 +31,7 @@ def main():
 
    #Reshapes array to 28x28 board
    newArr = reshape_pixel_array(pixel_array)
+   # print(newArr)
       
    plt.imshow(newArr, interpolation='nearest')
    plt.savefig('MNIST_IMAGE.png')#save MNIST image
