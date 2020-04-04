@@ -27,7 +27,7 @@ class ImageStitcher:
       filename = os.fsdecode(file)
 
       #creates pixel_extractor instance
-      pixel_extractor = PixelExtractor("data/" + filename, 'g')
+      pixel_extractor = PixelExtractor(self.directory_path + '/' + filename, 'g')
       target_pixel_locations = pixel_extractor.extract_target_pixel_location()
       for loc in target_pixel_locations:
         composite_image_list[loc] = 255
