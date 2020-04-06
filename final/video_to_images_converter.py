@@ -1,16 +1,4 @@
-'''
-Using OpenCV takes a mp4 video and produces a number of images.
-Requirements
-----
-You require OpenCV 3.2 to be installed.
-Run
-----
-Open the main.py and edit the path to the video. Then run:
-$ python main.py
-Which will produce a folder called data with the images. There will be 2000+ images for example.mp4.
-'''
 import cv2
-# import numpy as np
 import os
 import shutil
 
@@ -44,9 +32,10 @@ class VideoToImageConverter:
             os.makedirs(destination_path)
 
         except OSError:
-            print ('Error: Creating directory of data')
+            print ('Error: Cannot create directory')
 
-        currentFrame = 0
+        frame_count = 0
+
         while(True):
             # Capture frame-by-frame
 
@@ -55,12 +44,10 @@ class VideoToImageConverter:
             if hasFrames:
 
                 # Saves image of the current frame in jpg file
-                name = './data/frame' + str(currentFrame) + '.jpg'
-                print ('Creating...' + name)
+                name = './'+ destination_path +'/frame' + str(frame_count) + '.jpg'
+                print ('Spliced ' + name)
                 cv2.imwrite(name, image)
-
-                # To stop duplicate images
-                currentFrame += 1
+                frame_count += 1
 
             else:
                 break
@@ -71,5 +58,7 @@ class VideoToImageConverter:
 
 
 
-x = VideoToImageConverter('3Video.mp4')
-x.splice_video()
+# x = VideoToImageConverter('3Video.mp4')
+# x.splice_video()
+
+

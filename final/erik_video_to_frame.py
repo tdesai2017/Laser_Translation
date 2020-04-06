@@ -5,7 +5,7 @@ def getFrame(sec):
     vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
     hasFrames,image = vidcap.read()
     if hasFrames:
-        cv2.imwrite("./test/image"+str(count)+".jpg", image)     # save frame as JPG file
+        cv2.imwrite("./test/image"+str(count)+".jpg", image)  
     return hasFrames
 
 sec = 0
