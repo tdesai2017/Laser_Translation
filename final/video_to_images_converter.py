@@ -10,7 +10,7 @@ $ python main.py
 Which will produce a folder called data with the images. There will be 2000+ images for example.mp4.
 '''
 import cv2
-import numpy as np
+# import numpy as np
 import os
 import shutil
 
@@ -29,15 +29,18 @@ class VideoToImageConverter:
         since this folder will be deleted and populated with images
         """
 
-    # Playing video from file:
-        cap = cv2.VideoCapture(self.video_path)
+        # Playing video from file:
+        vidcap = cv2.VideoCapture(self.video_path)
 
+        #Saves to respective folder
         try:
             if os.path.exists(destination_path):
                 #Deletes any folder currently named ./data if it exists
                 shutil.rmtree(destination_path, ignore_errors=True)
-                print(os.path.exists(destination_path))
+                print("Deleting current '" + destination_path + "' folder" )
 
+
+            print("Creating new '" + destination_path + "' folder" )
             os.makedirs(destination_path)
 
         except OSError:
@@ -46,27 +49,27 @@ class VideoToImageConverter:
         currentFrame = 0
         while(True):
             # Capture frame-by-frame
-            ret, frame = cap.read()
-            
-            #Breaks when you have an empty frame
-            try:
-                frame.any()
-            except:
+
+            hasFrames,image = vidcap.read()
+
+            if hasFrames:
+
+                # Saves image of the current frame in jpg file
+                name = './data/frame' + str(currentFrame) + '.jpg'
+                print ('Creating...' + name)
+                cv2.imwrite(name, image)
+
+                # To stop duplicate images
+                currentFrame += 1
+
+            else:
                 break
 
-            # Saves image of the current frame in jpg file
-            name = './data/frame' + str(currentFrame) + '.jpg'
-            print ('Creating...' + name)
-            cv2.imwrite(name, frame)
-
-            # To stop duplicate images
-            currentFrame += 1
-
         # When everything done, release the capture
-        cap.release()
+        vidcap.release()
         cv2.destroyAllWindows()
 
 
 
-# x = VideoToImageConverter('3Video.mp4')
-# x.splice_video()
+x = VideoToImageConverter('3Video.mp4')
+x.splice_video()
