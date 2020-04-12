@@ -1,1 +1,5 @@
 *myprojectenv*
+.mypy_cache/
+final/__pycache__/*
+.DS_Store
+final/k1_model.sav

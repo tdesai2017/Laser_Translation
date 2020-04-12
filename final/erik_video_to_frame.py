@@ -1,5 +1,7 @@
 # pip3 install opencv-python
 import cv2
+
+
 vidcap = cv2.VideoCapture('3Video.mp4') # replace 'video.mp4' with actual name
 def getFrame(sec):
     vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
