@@ -45,6 +45,7 @@ class ImageStitcher:
     plt.imshow(reshaped_composite_image, cmap='Greys',  interpolation='nearest')
     # plt.savefig('MNIST_IMAGE.png')#save MNIST image
     plt.show()#Show / plot that image
+    return composite_image_list
 
 
   def reshape_pixel_array(self, composite_image_list):
