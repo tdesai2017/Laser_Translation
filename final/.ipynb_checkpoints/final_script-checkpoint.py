@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import joblib
 import pandas as pd
 
-#converts video into a collection of images saved in a folder ./data
+#converts video into a collection of images saved in a folder ./data - Eric's Part
 loaded_model = joblib.load("/Users/zumaad/Laser_Translation/final/k1_model.sav")
 
 vti_converter = VideoToImageConverter('1.mp4')

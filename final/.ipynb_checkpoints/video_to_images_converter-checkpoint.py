@@ -57,6 +57,7 @@ class VideoToImageConverter:
         cv2.destroyAllWindows()
 
 
+
 # x = VideoToImageConverter('3Video.mp4')
 # x.splice_video()
 

@@ -2,17 +2,17 @@ import os
 from extract_pixels import PixelExtractor
 from matplotlib import pyplot as plt
 
+
 class ImageStitcher:
     def __init__(self, directory_path = 'data'):
         """ Directory Path represents directory containing spliced images """
 
         self.directory_path = directory_path
-        
     def create_composite_image_list (self):
         """ 
         Takes a directory and overlays its content images together based on 
         PixelExtractor's conditions
-
+    
         """
 
         directory = os.fsencode(self.directory_path)
@@ -23,13 +23,15 @@ class ImageStitcher:
         for file in os.listdir(directory):
             filename = os.fsdecode(file)
 
-            #creates pixel_extractor instance
-            pixel_extractor = PixelExtractor(self.directory_path + '/' + filename, 'g')
-            target_pixel_locations = pixel_extractor.extract_target_pixel_location()
-            for loc in target_pixel_locations:
-                composite_image_list[loc] = 255
+          #creates pixel_extractor instance
+        pixel_extractor = PixelExtractor(self.directory_path + '/' + filename, 'g')
+        target_pixel_locations = pixel_extractor.extract_target_pixel_location()
+        for loc in target_pixel_locations:
+            composite_image_list[loc] = 255
+
 
         return composite_image_list
+    
     
     def draw_image(self):
         """Draws the image representation of the composite image"""
@@ -52,6 +54,12 @@ class ImageStitcher:
             n+=28
 
         return reshaped_composite_image
+
+  
+
+
+  
+
 
 # x = ImageStitcher()
 # x.create_composite_image_list()
